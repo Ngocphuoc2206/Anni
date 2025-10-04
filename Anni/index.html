@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kỷ niệm của chúng mình 💞</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #fff8fb;
+        --bg-soft: #ffeaf3;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --primary: #ff6b9a;
+        --primary-2: #ff9fbb;
+        --card: #ffffff;
+        --shadow: 0 10px 30px rgba(255, 107, 154, 0.25);
+        --ring: 0 0 0 6px rgba(255, 107, 154, 0.15);
+      }
+      /* Dark mode khi bật toggle */
+      #theme-toggle:checked ~ .page {
+        --bg: #111827;
+        --bg-soft: #1f2937;
+        --text: #f9fafb;
+        --muted: #a1a1aa;
+        --primary: #ff8fb3;
+        --primary-2: #ffc7d9;
+        --card: #0b1220;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+        --ring: 0 0 0 6px rgba(255, 143, 179, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+      }
+      body {
+        font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto,
+          sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      .page {
+        min-height: 100dvh;
+        display: grid;
+        place-items: start center;
+        transition: filter 0.35s ease, opacity 0.35s ease;
+      }
+
+      /* Toggle theme */
+      #theme-toggle {
+        position: fixed;
+        top: 16px;
+        right: 16px;
+        width: 1px;
+        height: 1px;
+        opacity: 0;
+      }
+      .toggle {
+        position: fixed;
+        top: 16px;
+        right: 16px;
+        z-index: 50;
+        background: var(--card);
+        border-radius: 999px;
+        padding: 8px 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: var(--shadow);
+        cursor: pointer;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      .toggle .dot {
+        width: 22px;
+        height: 22px;
+        border-radius: 999px;
+        background: var(--primary);
+        box-shadow: inset 0 -3px 8px rgba(0, 0, 0, 0.15);
+        transition: transform 0.25s ease;
+      }
+      #theme-toggle:checked + label .dot {
+        transform: translateX(26px);
+      }
+      .toggle .track {
+        width: 56px;
+        height: 24px;
+        border-radius: 999px;
+        background: var(--bg-soft);
+        position: relative;
+      }
+      .toggle .txt {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      /* HERO */
+      .hero {
+        position: relative;
+        width: min(1100px, 96vw);
+        margin-top: 72px;
+        border-radius: 28px;
+        overflow: hidden;
+        background: radial-gradient(
+            1200px 600px at 110% -10%,
+            var(--primary-2),
+            transparent
+          ),
+          radial-gradient(1200px 600px at -10% 110%, #ffd6e8, transparent),
+          linear-gradient(135deg, var(--bg-soft), var(--card));
+        box-shadow: var(--shadow);
+      }
+      .hero-inner {
+        padding: clamp(24px, 6vw, 64px);
+        text-align: center;
+        position: relative;
+        z-index: 2;
+      }
+
+      .title {
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-size: clamp(28px, 6vw, 56px);
+        margin: 0 0 12px;
+        letter-spacing: 0.5px;
+      }
+      .subtitle {
+        color: var(--muted);
+        font-size: clamp(14px, 2.6vw, 18px);
+        margin-bottom: 20px;
+      }
+
+      /* Kiểu gõ chữ (CSS-only) */
+      .typing {
+        width: 22ch; /* số ký tự sẽ gõ */
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 2px solid var(--primary);
+        margin: 10px auto 0;
+        animation: typing 3.5s steps(22, end) 0.6s both,
+          blink 0.9s step-end infinite;
+      }
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 22ch;
+        }
+      }
+      @keyframes blink {
+        50% {
+          border-color: transparent;
+        }
+      }
+
+      .avatars {
+        display: flex;
+        justify-content: center;
+        gap: 18px;
+        margin: 22px 0 6px;
+      }
+      .avatar {
+        width: 84px;
+        height: 84px;
+        border-radius: 999px;
+        overflow: hidden;
+        border: 3px solid var(--card);
+        box-shadow: var(--shadow);
+        background: var(--bg);
+      }
+      .avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .date-badge {
+        display: inline-block;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: var(--card);
+        color: var(--muted);
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        box-shadow: var(--shadow);
+      }
+
+      /* Thả tim bay bay */
+      .hearts {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        z-index: 1;
+        pointer-events: none;
+      }
+      .hearts span {
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        background: var(--primary);
+        transform: rotate(45deg);
+        left: var(--x, 50%);
+        top: 110%;
+        opacity: 0.7;
+        animation: rise var(--t, 9s) linear infinite;
+        box-shadow: 0 6px 16px rgba(255, 107, 154, 0.35);
+      }
+      .hearts span::before,
+      .hearts span::after {
+        content: "";
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        background: var(--primary);
+        border-radius: 50%;
+      }
+      .hearts span::before {
+        left: -9px;
+      }
+      .hearts span::after {
+        top: -9px;
+      }
+      @keyframes rise {
+        0% {
+          transform: translateY(0) rotate(45deg) scale(0.9);
+        }
+        100% {
+          transform: translateY(-160%) rotate(45deg) scale(1.1);
+        }
+      }
+      /* tạo nhiều tim khác tốc độ/ vị trí */
+      .hearts span:nth-child(1) {
+        --x: 10%;
+        --t: 12s;
+        animation-delay: 0s;
+      }
+      .hearts span:nth-child(2) {
+        --x: 22%;
+        --t: 10s;
+        animation-delay: 1s;
+      }
+      .hearts span:nth-child(3) {
+        --x: 34%;
+        --t: 11s;
+        animation-delay: 2.2s;
+      }
+      .hearts span:nth-child(4) {
+        --x: 46%;
+        --t: 9s;
+        animation-delay: 1.4s;
+      }
+      .hearts span:nth-child(5) {
+        --x: 58%;
+        --t: 13s;
+        animation-delay: 0.5s;
+      }
+      .hearts span:nth-child(6) {
+        --x: 70%;
+        --t: 9.5s;
+        animation-delay: 2.6s;
+      }
+      .hearts span:nth-child(7) {
+        --x: 82%;
+        --t: 12.5s;
+        animation-delay: 0.9s;
+      }
+      .hearts span:nth-child(8) {
+        --x: 18%;
+        --t: 10.5s;
+        animation-delay: 3s;
+      }
+      .hearts span:nth-child(9) {
+        --x: 64%;
+        --t: 11.5s;
+        animation-delay: 1.8s;
+      }
+      .hearts span:nth-child(10) {
+        --x: 90%;
+        --t: 14s;
+        animation-delay: 0.2s;
+      }
+
+      /* Sections */
+      .section {
+        width: min(1100px, 96vw);
+        height: auto;
+        margin: 28px auto;
+        padding: clamp(16px, 3vw, 32px);
+        background: var(--card);
+        border-radius: 24px;
+        box-shadow: var(--shadow);
+        border: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      .section h2 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(22px, 3.8vw, 32px);
+        margin: 0 0 12px;
+      }
+      .section p.lead {
+        color: var(--muted);
+        margin-top: 0;
+      }
+
+      /* Timeline */
+      .timeline {
+        display: grid;
+        grid-template-columns: 24px 1fr;
+        gap: 14px 18px;
+        position: relative;
+      }
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 11px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(var(--primary), transparent);
+        opacity: 0.5;
+      }
+      .dot {
+        width: 24px;
+        height: 24px;
+        border-radius: 999px;
+        background: var(--primary);
+        box-shadow: var(--ring);
+      }
+      .item {
+        padding-bottom: 12px;
+        border-bottom: 1px dashed rgba(0, 0, 0, 0.08);
+      }
+      .item:last-child {
+        border: 0;
+      }
+      .when {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .what {
+        font-weight: 600;
+        margin: 4px 0 6px;
+      }
+      .desc {
+        color: var(--muted);
+        margin: 0;
+      }
+
+      /* ALBUM – carousel thuần CSS */
+      .carousel {
+        position: relative;
+        border-radius: 18px;
+        overflow: hidden;
+        background: #000; /* nền để letterbox */
+        aspect-ratio: 16 / 9; /* khung cố định để overlay các slide */
+        width: 100%;
+      }
+
+      /* mobile: khung đứng hơn để hợp ảnh chụp chân dung */
+      @media (max-width: 640px) {
+        .carousel {
+          aspect-ratio: 4 / 5;
+        }
+      }
+
+      .slides {
+        position: relative; /* làm gốc cho các figure absolute */
+        width: 100%;
+        height: 100%;
+      }
+
+      /* mỗi slide “trải” kín khung, căn giữa */
+      .slides figure {
+        position: absolute;
+        inset: 0;
+        margin: 0;
+        opacity: 0;
+        pointer-events: none; /* tránh click vào ảnh khi ẩn */
+        transition: opacity 0.45s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #000;
+      }
+
+      .slides img {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        object-position: center center;
+        display: block;
+      }
+
+      /* radio ẩn */
+      input[name="slide"] {
+        position: absolute;
+        opacity: 0;
+      }
+
+      #s1:checked ~ .slides .f1,
+      #s2:checked ~ .slides .f2,
+      #s3:checked ~ .slides .f3,
+      #s4:checked ~ .slides .f4,
+      #s5:checked ~ .slides .f5,
+      #s6:checked ~ .slides .f6 {
+        opacity: 1;
+        pointer-events: auto;
+        z-index: 1;
+      }
+
+      /* điều khiển */
+      .nav {
+        position: absolute;
+        inset: 0;
+      }
+
+      .nav label {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        backdrop-filter: blur(6px);
+        background: rgba(255, 255, 255, 0.35);
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 2; /* cao hơn ảnh */
+      }
+      .prev {
+        left: 8px;
+      }
+      .next {
+        right: 8px;
+      }
+
+      .dots {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 10px;
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+      }
+      .dots label {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.55);
+        cursor: pointer;
+        border: 1px solid rgba(255, 255, 255, 0.8);
+      }
+      #s1:checked ~ .dots .d1,
+      #s2:checked ~ .dots .d2,
+      #s3:checked ~ .dots .d3,
+      #s4:checked ~ .dots .d4,
+      #s5:checked ~ .dots .d5,
+      #s6:checked ~ .dots .d6 {
+        background: var(--primary);
+        border-color: var(--primary);
+      }
+
+      /* Ẩn các cặp nút phụ mặc định, chỉ hiện cặp cho s1 */
+      .nav .s2,
+      .nav .s3,
+      .nav .s4,
+      .nav .s5,
+      .nav .s6 {
+        display: none;
+      }
+
+      /* Khi đang ở s2: ẩn cặp mặc định, hiện cặp .s2 */
+      #s2:checked ~ .nav .prev,
+      #s2:checked ~ .nav .next {
+        display: none;
+      }
+      #s2:checked ~ .nav .prev.s2,
+      #s2:checked ~ .nav .next.s2 {
+        display: grid;
+      }
+
+      /* Khi đang ở s3: ẩn cặp mặc định, hiện cặp .s3 */
+      #s3:checked ~ .nav .prev,
+      #s3:checked ~ .nav .next {
+        display: none;
+      }
+      #s3:checked ~ .nav .prev.s3,
+      #s3:checked ~ .nav .next.s3 {
+        display: grid;
+      }
+
+      /* Khi đang ở s4: ẩn cặp mặc định, hiện cặp .s4 */
+      #s4:checked ~ .nav .prev,
+      #s4:checked ~ .nav .next {
+        display: none;
+      }
+      #s4:checked ~ .nav .prev.s4,
+      #s4:checked ~ .nav .next.s4 {
+        display: grid;
+      }
+      /* Khi đang ở s5: ẩn cặp mặc định, hiện cặp .s5 */
+      #s5:checked ~ .nav .prev,
+      #s5:checked ~ .nav .next {
+        display: none;
+      }
+      #s5:checked ~ .nav .prev.s5,
+      #s5:checked ~ .nav .next.s5 {
+        display: grid;
+      }
+      /* Khi đang ở s6: ẩn cặp mặc định, hiện cặp .s6 */
+      #s6:checked ~ .nav .prev,
+      #s6:checked ~ .nav .next {
+        display: none;
+      }
+      #s6:checked ~ .nav .prev.s6,
+      #s6:checked ~ .nav .next.s6 {
+        display: grid;
+      }
+      /* END ALBUM */
+      /* 100 lý do yêu – lưới thẻ */
+      .reasons {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 12px;
+      }
+      .card {
+        background: linear-gradient(180deg, var(--bg), var(--card));
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        border-radius: 16px;
+        padding: 14px;
+        box-shadow: var(--shadow);
+        transition: transform 0.2s ease;
+      }
+      .card:hover {
+        transform: translateY(-2px);
+      }
+      .num {
+        font-weight: 700;
+        color: var(--primary);
+        margin-right: 6px;
+      }
+
+      /* Lời nhắn – thẻ lật */
+      .notes {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 16px;
+        perspective: 1200px;
+      }
+      .flip {
+        position: relative;
+        height: 160px;
+        transform-style: preserve-3d;
+        transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      .flip:hover {
+        transform: rotateY(180deg);
+      }
+      .face {
+        position: absolute;
+        inset: 0;
+        border-radius: 16px;
+        padding: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        backface-visibility: hidden;
+      }
+      .front {
+        background: var(--card);
+        border: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      .back {
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        color: white;
+        transform: rotateY(180deg);
+      }
+
+      /* Footer */
+      .footer {
+        text-align: center;
+        color: var(--muted);
+        padding: 28px 0 48px;
+      }
+
+      /* helper */
+      .row {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 14px;
+        align-items: center;
+      }
+      .col-6 {
+        grid-column: span 6;
+      }
+      .center {
+        text-align: center;
+      }
+      .btn {
+        display: inline-block;
+        padding: 10px 16px;
+        border-radius: 12px;
+        background: var(--primary);
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        box-shadow: var(--shadow);
+      }
+
+      /* GATE – Câu hỏi Yes/No (CSS-only) */
+      #gate {
+        position: fixed;
+        inset: 0;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .gate-overlay {
+        position: fixed;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        background: radial-gradient(
+            800px 500px at 50% -10%,
+            var(--primary-2),
+            transparent
+          ),
+          var(--bg);
+        z-index: 60;
+      }
+      #gate:not(:checked) ~ .gate-overlay {
+        display: flex;
+      }
+      #gate:not(:checked) ~ .page {
+        filter: blur(6px);
+        opacity: 0.25;
+      }
+
+      .gate-card {
+        width: min(640px, 96vw);
+        background: var(--card);
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        border-radius: 24px;
+        box-shadow: var(--shadow);
+        padding: clamp(20px, 4vw, 36px);
+        text-align: center;
+      }
+      .gate-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(22px, 4.5vw, 34px);
+        margin: 0 0 10px;
+      }
+      .gate-sub {
+        color: var(--muted);
+        margin: 0 0 18px;
+      }
+      .gate-actions {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        align-items: center;
+        margin-top: 8px;
+      }
+      .gate-btn {
+        padding: 10px 18px;
+        border-radius: 12px;
+        font-weight: 700;
+        border: 0;
+        box-shadow: var(--shadow);
+        cursor: pointer;
+      }
+      .yes {
+        background: var(--primary);
+        color: white;
+      }
+      .no {
+        background: var(--bg-soft);
+        color: var(--text);
+        position: relative;
+        transition: transform 0.15s ease;
+      }
+      /* Nút NO chạy trốn */
+      .no:hover {
+        transform: translateY(-2px);
+      }
+      .gate-actions:hover .no {
+        animation: run 1.2s ease-in-out infinite alternate;
+      }
+      @keyframes run {
+        0% {
+          transform: translate(0, 0);
+        }
+        25% {
+          transform: translate(-60px, -6px) rotate(-2deg);
+        }
+        50% {
+          transform: translate(40px, 6px) rotate(2deg);
+        }
+        75% {
+          transform: translate(-30px, 0) rotate(-1deg);
+        }
+        100% {
+          transform: translate(70px, -4px) rotate(1deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <input type="checkbox" id="theme-toggle" />
+    <label class="toggle" for="theme-toggle" title="Bật/Tắt nền tối">
+      <span class="txt">Light</span>
+      <span class="track"><span class="dot"></span></span>
+      <span class="txt">Dark</span>
+    </label>
+
+    <!-- GATE checkbox & overlay -->
+    <input type="checkbox" id="gate" />
+    <div class="gate-overlay">
+      <div class="gate-card">
+        <h2 class="gate-title">Em có yêu anh không hả Quanhhhhh? 💘</h2>
+        <p class="gate-sub">
+          Trả lời thật lòng nhaaa… rồi mình vào xem kỷ niệm nè! ✨
+        </p>
+        <div class="gate-actions">
+          <!-- YES mở trang: label for=gate để check -->
+          <label class="gate-btn yes" for="gate">Yes, tất nhiên rồi!</label>
+          <!-- NO chạy trốn vui vẻ, không làm gì cả -->
+          <button class="gate-btn no" type="button">No 🙈</button>
+        </div>
+      </div>
+    </div>
+
+    <main class="page">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hearts" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="hero-inner">
+          <div class="avatars" aria-hidden="true">
+            <div class="avatar">
+              <img src="./hinhNam.jpg" alt="Ảnh anh iu" />
+            </div>
+            <div class="avatar">
+              <img src="./hinhNu.jpg" alt="Ảnh bạn B" />
+            </div>
+          </div>
+          <h1 class="title">Anh Bé ❤️ Em bé</h1>
+          <p class="subtitle">
+            Hành trình yêu thương — cùng nhau từ <b>29/06/2025</b>
+          </p>
+          <div class="typing" aria-label="Typing line">
+            Mãi bên nhau bạn nhé 💗
+          </div>
+          <span class="date-badge">Kỷ niệm: 05/10 hằng năm</span>
+        </div>
+      </section>
+
+      <!-- STORYLINE -->
+      <section class="section">
+        <h2>Câu chuyện của chúng mình</h2>
+        <p class="lead">Một vài cột mốc đáng nhớ của anh và em.</p>
+        <div class="timeline">
+          <div class="dot" aria-hidden="true"></div>
+          <div class="item">
+            <div class="dot" aria-hidden="true"></div>
+            <div class="item">
+              <div class="when">29/07/2025</div>
+              <div class="what">Lần gặp đầu tiên</div>
+              <p class="desc">
+                Là lúc mà anh bị ấn tượng bởi em tại em mặc đúng gu anh thích
+                áaaaaaaa😍 và rồi sau đó....
+              </p>
+            </div>
+            <div class="when">01/07/2025</div>
+            <div class="what">Tin nhắn đầu tiên</div>
+            <p class="desc">
+              Là câu chuyện bắt đầu từ anh kêu em quét mã add Ig với anh hehehe
+              và bị ấn tượng về cô bé dễ thương.
+            </p>
+          </div>
+
+          <div class="dot" aria-hidden="true"></div>
+          <div class="item">
+            <div class="when">05/07/2025</div>
+            <div class="what">
+              Lần đi chơi riêng đầu tiên sau nhiều ngày nhắn tin với em😉
+            </div>
+            <p class="desc">
+              Lúc đó anh cũng không hy vọng gì nhiều đâu, chỉ nghĩ là đi chơi
+              bình thường thôi nhưng mà không ngờ em lại mặc đồ đúng gu và nói
+              chuyện hợp với nhau đến vậy😍.
+            </p>
+          </div>
+
+          <div class="dot" aria-hidden="true"></div>
+          <div class="item">
+            <div class="when">05/09/2025</div>
+            <div class="what">Chính thức là của nhau</div>
+            <p class="desc">
+              Ngày mà anh tỏ tình em ở công viên Tao Đàn Quận 1 và em say yes
+              😘.
+            </p>
+          </div>
+
+          <div class="dot" aria-hidden="true"></div>
+          <div class="item">
+            <div class="when">05/10/2025</div>
+            <div class="what">Cột mốc đáng nhớ</div>
+            <p class="desc">
+              Hôm nay là ngày kỷ niệm 1 tháng của chúng mình đó em yêu ơi và anh
+              hy vọng sẽ có nhiều kỷ niệm hơn cùng nhau nữa nhé💖.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ALBUM CSS-ONLY CAROUSEL -->
+      <section class="section">
+        <h2>Album kỷ niệm</h2>
+        <p class="lead">
+          Cùng xem lại những khoảnh khắc đẹp của chúng mình trong một tháng qua
+          em nhé 💕
+        </p>
+        <div class="carousel">
+          <!-- radio controllers -->
+          <input type="radio" name="slide" id="s1" checked />
+          <input type="radio" name="slide" id="s2" />
+          <input type="radio" name="slide" id="s3" />
+          <input type="radio" name="slide" id="s4" />
+          <input type="radio" name="slide" id="s5" />
+          <input type="radio" name="slide" id="s6" />
+          <!-- slides -->
+          <div class="slides">
+            <figure class="f1">
+              <img src="./hinh1.jpg" alt="Kỷ niệm 1" />
+            </figure>
+            <figure class="f2">
+              <img src="./hinh2.jpg" alt="Kỷ niệm 2" />
+            </figure>
+            <figure class="f3">
+              <img src="./hinh3.jpg" alt="Kỷ niệm 3" />
+            </figure>
+            <figure class="f4">
+              <img src="./hinh4.jpg" alt="Kỷ niệm 4" />
+            </figure>
+            <figure class="f5">
+              <img src="./hinh5.jpg" alt="Kỷ niệm 5" />
+            </figure>
+            <figure class="f6">
+              <img src="./hinh6.jpg" alt="Kỷ niệm 6" />
+            </figure>
+          </div>
+
+          <div class="nav">
+            <!-- s1: trái về s6, phải sang s2 -->
+            <label for="s6" class="prev">⟨</label>
+            <label for="s2" class="next">⟩</label>
+
+            <!-- s2: trái về s1, phải sang s3 -->
+            <label for="s1" class="prev s2">⟨</label>
+            <label for="s3" class="next s2">⟩</label>
+
+            <!-- s3: trái về s2, phải sang s4 -->
+            <label for="s2" class="prev s3">⟨</label>
+            <label for="s4" class="next s3">⟩</label>
+
+            <!-- s4: trái về s3, phải sang s5 -->
+            <label for="s3" class="prev s4">⟨</label>
+            <label for="s5" class="next s4">⟩</label>
+
+            <!-- s5: trái về s4, phải sang s6 -->
+            <label for="s4" class="prev s5">⟨</label>
+            <label for="s6" class="next s5">⟩</label>
+
+            <!-- s6: trái về s5, phải quay lại s1 -->
+            <label for="s5" class="prev s6">⟨</label>
+            <label for="s1" class="next s6">⟩</label>
+          </div>
+
+          <!-- dots -->
+          <div class="dots" aria-hidden="true">
+            <label class="d1" for="s1"></label>
+            <label class="d2" for="s2"></label>
+            <label class="d3" for="s3"></label>
+            <label class="d4" for="s4"></label>
+            <label class="d5" for="s5"></label>
+            <label class="d6" for="s6"></label>
+          </div>
+        </div>
+      </section>
+
+      <!-- 100 LÝ DO YÊU -->
+      <section class="section">
+        <h2>100 lý do vì sao anh yêu em</h2>
+        <p class="lead">
+          Anh sẽ nói cho em nghe 10 lý do trước nha, còn lại để dành cho những
+          năm sau mình cùng nhau khám phá nhé 💕
+        </p>
+        <div class="reasons">
+          <div class="card">
+            <span class="num">01.</span>Mỗi lần thấy em cười là anh cảm giác như
+            anh không còn thấy mệt nữa 😙.
+          </div>
+          <div class="card">
+            <span class="num">02.</span>Anh ấn tượng về em cách em nhìn nhận mọi
+            chuyện nó rất là đúng gu của anh và anh bị ấn tượng từ nó ớ🙄.
+          </div>
+          <div class="card">
+            <span class="num">03.</span>Anh thích cách em luôn say yes với anh
+            khi anh đưa ra ý tưởng đi chơi.
+          </div>
+          <div class="card">
+            <span class="num">04.</span>Những cái ôm thiệt chặt mỗi khi mệt.
+          </div>
+          <div class="card">
+            <span class="num">05.</span>Anh rất thích cách em tràn đầy năng
+            luợng tích cực mỗi khi nhìn thấy em anh thấy rất thoải mái luôn í😊.
+          </div>
+          <div class="card">
+            <span class="num">06.</span>Đôi mắt biết nói của em.
+          </div>
+          <div class="card">
+            <span class="num">07.</span>Tụi mình luôn cố gắng vì nhau.
+          </div>
+          <div class="card">
+            <span class="num">08.</span>Mọi khoảnh khắc bên em đều đáng giá.
+          </div>
+          <div class="card">
+            <span class="num">09.</span>Em là động lực để anh tốt hơn.
+          </div>
+          <div class="card">
+            <span class="num">10.</span>Vì chúng ta sinh ra là để ở bên nhau.
+          </div>
+        </div>
+      </section>
+
+      <!-- LỜI NHẮN – FLIP CARDS -->
+      <section class="section">
+        <h2>Lời nhắn gửi em</h2>
+        <div class="notes">
+          <div class="flip">
+            <div class="face front">Nhấp/Di chuột để lật 💌</div>
+            <div class="face back">
+              Cảm ơn em vì đã đến và ở lại. Mỗi ngày có em là một ngày hạnh phúc
+              của cuộc đời anh.
+            </div>
+          </div>
+          <div class="flip">
+            <div class="face front">💬 Bí mật 1</div>
+            <div class="face back">
+              Khi nhớ em, anh thường mở album này xem lại ảnh chúng mình.
+            </div>
+          </div>
+          <div class="flip">
+            <div class="face front">💬 Bí mật 2</div>
+            <div class="face back">
+              Tương lai của anh luôn có em. Cùng đi thêm nhiều nơi nhé!
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section center">
+        <h2>Hẹn nhau mỗi năm một lần</h2>
+        <p class="lead">
+          Đến ngày kỷ niệm, mở trang này lại – thêm ảnh, thêm câu chuyện mới nha
+          em💖
+        </p>
+        <a class="btn" href="#top" aria-label="Lên đầu trang"
+          >Lên đầu trang ⤴</a
+        >
+      </section>
+
+      <div class="footer">
+        Made with ♥ bằng HTML & CSS — không cần JavaScript.
+      </div>
+    </main>
+  </body>
+</html>
