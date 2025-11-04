@@ -139,7 +139,7 @@
 
       /* Kiểu gõ chữ (CSS-only) */
       .typing {
-        width: 22ch; /* số ký tự sẽ gõ */
+        width: 22ch;
         white-space: nowrap;
         overflow: hidden;
         border-right: 2px solid var(--primary);
@@ -235,7 +235,6 @@
           transform: translateY(-160%) rotate(45deg) scale(1.1);
         }
       }
-      /* tạo nhiều tim khác tốc độ/ vị trí */
       .hearts span:nth-child(1) {
         --x: 10%;
         --t: 12s;
@@ -290,7 +289,6 @@
       /* Sections */
       .section {
         width: min(1100px, 96vw);
-        height: auto;
         margin: 28px auto;
         padding: clamp(16px, 3vw, 32px);
         background: var(--card);
@@ -357,36 +355,43 @@
         position: relative;
         border-radius: 18px;
         overflow: hidden;
-        background: #000; /* nền để letterbox */
-        aspect-ratio: 16 / 9; /* khung cố định để overlay các slide */
+        background: #000;
+        aspect-ratio: 16/9;
         width: 100%;
       }
-
-      /* mobile: khung đứng hơn để hợp ảnh chụp chân dung */
       @media (max-width: 640px) {
         .carousel {
-          aspect-ratio: 4 / 5;
+          aspect-ratio: 4/5;
         }
       }
-
       .slides {
-        position: relative; /* làm gốc cho các figure absolute */
+        position: relative;
         width: 100%;
         height: 100%;
       }
-
-      /* mỗi slide “trải” kín khung, căn giữa */
       .slides figure {
         position: absolute;
         inset: 0;
         margin: 0;
         opacity: 0;
-        pointer-events: none; /* tránh click vào ảnh khi ẩn */
+        pointer-events: none;
         transition: opacity 0.45s ease;
         display: flex;
         justify-content: center;
         align-items: center;
         background: #000;
+      }
+
+      .slides video {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        object-position: center center;
+        display: block;
+        background: #000;
+        border: 0;
       }
 
       .slides img {
@@ -405,12 +410,25 @@
         opacity: 0;
       }
 
+      /* Hiển thị figure tương ứng radio được chọn */
       #s1:checked ~ .slides .f1,
       #s2:checked ~ .slides .f2,
       #s3:checked ~ .slides .f3,
       #s4:checked ~ .slides .f4,
       #s5:checked ~ .slides .f5,
-      #s6:checked ~ .slides .f6 {
+      #s6:checked ~ .slides .f6,
+      #s7:checked ~ .slides .f7,
+      #s8:checked ~ .slides .f8,
+      #s9:checked ~ .slides .f9,
+      #s10:checked ~ .slides .f10,
+      #s11:checked ~ .slides .f11,
+      #s12:checked ~ .slides .f12,
+      #s13:checked ~ .slides .f13,
+      #s14:checked ~ .slides .f14,
+      #s15:checked ~ .slides .f15,
+      #s16:checked ~ .slides .f16,
+      #s17:checked ~ .slides .f17,
+      #s18:checked ~ .slides .f18 {
         opacity: 1;
         pointer-events: auto;
         z-index: 1;
@@ -421,7 +439,6 @@
         position: absolute;
         inset: 0;
       }
-
       .nav label {
         width: 44px;
         height: 44px;
@@ -435,7 +452,7 @@
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        z-index: 2; /* cao hơn ảnh */
+        z-index: 2;
       }
       .prev {
         left: 8px;
@@ -452,6 +469,7 @@
         display: flex;
         gap: 8px;
         justify-content: center;
+        flex-wrap: wrap;
       }
       .dots label {
         width: 10px;
@@ -466,68 +484,48 @@
       #s3:checked ~ .dots .d3,
       #s4:checked ~ .dots .d4,
       #s5:checked ~ .dots .d5,
-      #s6:checked ~ .dots .d6 {
+      #s6:checked ~ .dots .d6,
+      #s7:checked ~ .dots .d7,
+      #s8:checked ~ .dots .d8,
+      #s9:checked ~ .dots .d9,
+      #s10:checked ~ .dots .d10,
+      #s11:checked ~ .dots .d11,
+      #s12:checked ~ .dots .d12,
+      #s13:checked ~ .dots .d13,
+      #s14:checked ~ .dots .d14,
+      #s15:checked ~ .dots .d15,
+      #s16:checked ~ .dots .d16,
+      #s17:checked ~ .dots .d17,
+      #s18:checked ~ .dots .d18 {
         background: var(--primary);
         border-color: var(--primary);
       }
 
-      /* Ẩn các cặp nút phụ mặc định, chỉ hiện cặp cho s1 */
-      .nav .s2,
-      .nav .s3,
-      .nav .s4,
-      .nav .s5,
-      .nav .s6 {
+      /* Ẩn mặc định cặp nút prev/next chung; show theo slide được chọn */
+      .nav .pair {
         display: none;
       }
-
-      /* Khi đang ở s2: ẩn cặp mặc định, hiện cặp .s2 */
-      #s2:checked ~ .nav .prev,
-      #s2:checked ~ .nav .next {
-        display: none;
-      }
-      #s2:checked ~ .nav .prev.s2,
-      #s2:checked ~ .nav .next.s2 {
+      #s1:checked ~ .nav .pair.s1,
+      #s2:checked ~ .nav .pair.s2,
+      #s3:checked ~ .nav .pair.s3,
+      #s4:checked ~ .nav .pair.s4,
+      #s5:checked ~ .nav .pair.s5,
+      #s6:checked ~ .nav .pair.s6,
+      #s7:checked ~ .nav .pair.s7,
+      #s8:checked ~ .nav .pair.s8,
+      #s9:checked ~ .nav .pair.s9,
+      #s10:checked ~ .nav .pair.s10,
+      #s11:checked ~ .nav .pair.s11,
+      #s12:checked ~ .nav .pair.s12,
+      #s13:checked ~ .nav .pair.s13,
+      #s14:checked ~ .nav .pair.s14,
+      #s15:checked ~ .nav .pair.s15,
+      #s16:checked ~ .nav .pair.s16,
+      #s17:checked ~ .nav .pair.s17,
+      #s18:checked ~ .nav .pair.s18 {
         display: grid;
       }
 
-      /* Khi đang ở s3: ẩn cặp mặc định, hiện cặp .s3 */
-      #s3:checked ~ .nav .prev,
-      #s3:checked ~ .nav .next {
-        display: none;
-      }
-      #s3:checked ~ .nav .prev.s3,
-      #s3:checked ~ .nav .next.s3 {
-        display: grid;
-      }
-
-      /* Khi đang ở s4: ẩn cặp mặc định, hiện cặp .s4 */
-      #s4:checked ~ .nav .prev,
-      #s4:checked ~ .nav .next {
-        display: none;
-      }
-      #s4:checked ~ .nav .prev.s4,
-      #s4:checked ~ .nav .next.s4 {
-        display: grid;
-      }
-      /* Khi đang ở s5: ẩn cặp mặc định, hiện cặp .s5 */
-      #s5:checked ~ .nav .prev,
-      #s5:checked ~ .nav .next {
-        display: none;
-      }
-      #s5:checked ~ .nav .prev.s5,
-      #s5:checked ~ .nav .next.s5 {
-        display: grid;
-      }
-      /* Khi đang ở s6: ẩn cặp mặc định, hiện cặp .s6 */
-      #s6:checked ~ .nav .prev,
-      #s6:checked ~ .nav .next {
-        display: none;
-      }
-      #s6:checked ~ .nav .prev.s6,
-      #s6:checked ~ .nav .next.s6 {
-        display: grid;
-      }
-      /* END ALBUM */
       /* 100 lý do yêu – lưới thẻ */
       .reasons {
         display: grid;
@@ -648,7 +646,6 @@
         filter: blur(6px);
         opacity: 0.25;
       }
-
       .gate-card {
         width: min(640px, 96vw);
         background: var(--card);
@@ -692,7 +689,6 @@
         position: relative;
         transition: transform 0.15s ease;
       }
-      /* Nút NO chạy trốn */
       .no:hover {
         transform: translateY(-2px);
       }
@@ -735,9 +731,9 @@
           Trả lời thật lòng nhaaa… rồi mình vào xem kỷ niệm nè! ✨
         </p>
         <div class="gate-actions">
-          <!-- YES mở trang: label for=gate để check -->
-          <label class="gate-btn yes" for="gate">Yes, tất nhiên rồi!</label>
-          <!-- NO chạy trốn vui vẻ, không làm gì cả -->
+          <label class="gate-btn yes" for="gate"
+            >Zạaaaaaaaaaaa cóooooooo iu anh💘</label
+          >
           <button class="gate-btn no" type="button">No 🙈</button>
         </div>
       </div>
@@ -755,9 +751,7 @@
             <div class="avatar">
               <img src="./hinhNam.jpg" alt="Ảnh anh iu" />
             </div>
-            <div class="avatar">
-              <img src="./hinhNu.jpg" alt="Ảnh bạn B" />
-            </div>
+            <div class="avatar"><img src="./hinhNu.jpg" alt="Ảnh em iu" /></div>
           </div>
           <h1 class="title">Anh Bé ❤️ Em bé</h1>
           <p class="subtitle">
@@ -766,7 +760,7 @@
           <div class="typing" aria-label="Typing line">
             Mãi bên nhau bạn nhé 💗
           </div>
-          <span class="date-badge">Kỷ niệm: 05/10 hằng năm</span>
+          <span class="date-badge">Kỷ niệm: Ngày 05 hằng tháng 😘</span>
         </div>
       </section>
 
@@ -777,15 +771,15 @@
         <div class="timeline">
           <div class="dot" aria-hidden="true"></div>
           <div class="item">
-            <div class="dot" aria-hidden="true"></div>
-            <div class="item">
-              <div class="when">29/07/2025</div>
-              <div class="what">Lần gặp đầu tiên</div>
-              <p class="desc">
-                Là lúc mà anh bị ấn tượng bởi em tại em mặc đúng gu anh thích
-                áaaaaaaa😍 và rồi sau đó....
-              </p>
-            </div>
+            <div class="when">29/07/2025</div>
+            <div class="what">Lần gặp đầu tiên</div>
+            <p class="desc">
+              Là lúc mà anh bị ấn tượng bởi em tại em mặc đúng gu anh thích
+              áaaaaaaa😍 và rồi sau đó....
+            </p>
+          </div>
+          <div class="dot" aria-hidden="true"></div>
+          <div class="item">
             <div class="when">01/07/2025</div>
             <div class="what">Tin nhắn đầu tiên</div>
             <p class="desc">
@@ -793,7 +787,6 @@
               và bị ấn tượng về cô bé dễ thương.
             </p>
           </div>
-
           <div class="dot" aria-hidden="true"></div>
           <div class="item">
             <div class="when">05/07/2025</div>
@@ -806,24 +799,37 @@
               chuyện hợp với nhau đến vậy😍.
             </p>
           </div>
-
           <div class="dot" aria-hidden="true"></div>
           <div class="item">
             <div class="when">05/09/2025</div>
             <div class="what">Chính thức là của nhau</div>
             <p class="desc">
               Ngày mà anh tỏ tình em ở công viên Tao Đàn Quận 1 và em say yes
-              😘.
+              với anh lúc đó anh vui lắm ớ 😘.
             </p>
           </div>
-
           <div class="dot" aria-hidden="true"></div>
           <div class="item">
             <div class="when">05/10/2025</div>
-            <div class="what">Cột mốc đáng nhớ</div>
+            <div class="what">Cột mốc đáng nhớ (Kỉ niệm 1 tháng bên nhau)</div>
             <p class="desc">
               Hôm nay là ngày kỷ niệm 1 tháng của chúng mình đó em yêu ơi và anh
               hy vọng sẽ có nhiều kỷ niệm hơn cùng nhau nữa nhé💖.
+            </p>
+          </div>
+          <div class="dot" aria-hidden="true"></div>
+          <div class="item">
+            <div class="when">05/11/2025</div>
+            <div class="what">
+              Cột mốc đáng nhớ (Kỉ niệm 2 tháng bên nhau ròi đóooo)
+            </div>
+            <p class="desc">
+              Hôm nay là cột mốc mà đánh dấu anh với em đã bên nhau 2 tháng ròi
+              đó, cũng nhanh ha em 😊, anh không nghĩ là sẽ quen được một cô bé
+              dễ thương, đáng iu và hợp gu như này cả. Càng quen lâu, anh càng
+              hiểu em nhiều hơn và anh nghĩ là anh càng thương em nhiều hơn ròi,
+              có trách nhiệm cố gắng không làm em khóc vì buồn bao giờ cả hihi.
+              Xuống xem ảnh của tụi mình được bao nhiêu rùi nhé emm 😍❤️
             </p>
           </div>
         </div>
@@ -833,17 +839,30 @@
       <section class="section">
         <h2>Album kỷ niệm</h2>
         <p class="lead">
-          Cùng xem lại những khoảnh khắc đẹp của chúng mình trong một tháng qua
-          em nhé 💕
+          Cùng xem lại khoảnh khắc đã trải qua cùng nhau nhé bé iu ơi, cố gắng
+          thêm nhìu nhìu hình nữa nhe em 😊
         </p>
         <div class="carousel">
-          <!-- radio controllers -->
+          <!-- radio controllers (16 slides) -->
           <input type="radio" name="slide" id="s1" checked />
           <input type="radio" name="slide" id="s2" />
           <input type="radio" name="slide" id="s3" />
           <input type="radio" name="slide" id="s4" />
           <input type="radio" name="slide" id="s5" />
           <input type="radio" name="slide" id="s6" />
+          <input type="radio" name="slide" id="s7" />
+          <input type="radio" name="slide" id="s8" />
+          <input type="radio" name="slide" id="s9" />
+          <input type="radio" name="slide" id="s10" />
+          <input type="radio" name="slide" id="s11" />
+          <input type="radio" name="slide" id="s12" />
+          <input type="radio" name="slide" id="s13" />
+          <input type="radio" name="slide" id="s14" />
+          <input type="radio" name="slide" id="s15" />
+          <input type="radio" name="slide" id="s16" />
+          <input type="radio" name="slide" id="s17" />
+          <input type="radio" name="slide" id="s18" />
+
           <!-- slides -->
           <div class="slides">
             <figure class="f1">
@@ -864,32 +883,129 @@
             <figure class="f6">
               <img src="./hinh6.jpg" alt="Kỷ niệm 6" />
             </figure>
+            <figure class="f7">
+              <img src="./hinh7.jpg" alt="Kỷ niệm 7" />
+            </figure>
+            <figure class="f8">
+              <img src="./hinh8.jpg" alt="Kỷ niệm 8" />
+            </figure>
+            <figure class="f9">
+              <img src="./hinh9.jpg" alt="Kỷ niệm 9" />
+            </figure>
+            <figure class="f10">
+              <img src="./hinh10.jpg" alt="Kỷ niệm 10" />
+            </figure>
+            <figure class="f11">
+              <img src="./hinh11.jpg" alt="Kỷ niệm 11" />
+            </figure>
+            <figure class="f12">
+              <img src="./hinh12.jpg" alt="Kỷ niệm 12" />
+            </figure>
+            <figure class="f13">
+              <img src="./hinh13.jpg" alt="Kỷ niệm 13" />
+            </figure>
+            <figure class="f14">
+              <img src="./hinh14.jpg" alt="Kỷ niệm 14" />
+            </figure>
+            <figure class="f15">
+              <img src="./hinh15.jpg" alt="Kỷ niệm 15" />
+            </figure>
+            <figure class="f16">
+              <img src="./hinh16.jpg" alt="Kỷ niệm 16" />
+            </figure>
+            <figure class="f17">
+              <video controls playsinline preload="metadata">
+                <source src="./video2.mp4" type="video/mp4" />
+                Trình duyệt của bạn không hỗ trợ video.
+              </video>
+            </figure>
+            <figure class="f18">
+              <video
+                controls
+                playsinline
+                preload="metadata"
+                poster="./poster.jpg"
+              >
+                <source src="./video3.mp4" type="video/mp4" />
+                Trình duyệt của bạn không hỗ trợ video.
+              </video>
+            </figure>
           </div>
 
+          <!-- navigation pairs (prev/next) -->
           <div class="nav">
-            <!-- s1: trái về s6, phải sang s2 -->
-            <label for="s6" class="prev">⟨</label>
-            <label for="s2" class="next">⟩</label>
-
-            <!-- s2: trái về s1, phải sang s3 -->
-            <label for="s1" class="prev s2">⟨</label>
-            <label for="s3" class="next s2">⟩</label>
-
-            <!-- s3: trái về s2, phải sang s4 -->
-            <label for="s2" class="prev s3">⟨</label>
-            <label for="s4" class="next s3">⟩</label>
-
-            <!-- s4: trái về s3, phải sang s5 -->
-            <label for="s3" class="prev s4">⟨</label>
-            <label for="s5" class="next s4">⟩</label>
-
-            <!-- s5: trái về s4, phải sang s6 -->
-            <label for="s4" class="prev s5">⟨</label>
-            <label for="s6" class="next s5">⟩</label>
-
-            <!-- s6: trái về s5, phải quay lại s1 -->
-            <label for="s5" class="prev s6">⟨</label>
-            <label for="s1" class="next s6">⟩</label>
+            <div class="pair s1">
+              <label for="s16" class="prev">⟨</label
+              ><label for="s2" class="next">⟩</label>
+            </div>
+            <div class="pair s2">
+              <label for="s1" class="prev">⟨</label
+              ><label for="s3" class="next">⟩</label>
+            </div>
+            <div class="pair s3">
+              <label for="s2" class="prev">⟨</label
+              ><label for="s4" class="next">⟩</label>
+            </div>
+            <div class="pair s4">
+              <label for="s3" class="prev">⟨</label
+              ><label for="s5" class="next">⟩</label>
+            </div>
+            <div class="pair s5">
+              <label for="s4" class="prev">⟨</label
+              ><label for="s6" class="next">⟩</label>
+            </div>
+            <div class="pair s6">
+              <label for="s5" class="prev">⟨</label
+              ><label for="s7" class="next">⟩</label>
+            </div>
+            <div class="pair s7">
+              <label for="s6" class="prev">⟨</label
+              ><label for="s8" class="next">⟩</label>
+            </div>
+            <div class="pair s8">
+              <label for="s7" class="prev">⟨</label
+              ><label for="s9" class="next">⟩</label>
+            </div>
+            <div class="pair s9">
+              <label for="s8" class="prev">⟨</label
+              ><label for="s10" class="next">⟩</label>
+            </div>
+            <div class="pair s10">
+              <label for="s9" class="prev">⟨</label
+              ><label for="s11" class="next">⟩</label>
+            </div>
+            <div class="pair s11">
+              <label for="s10" class="prev">⟨</label
+              ><label for="s12" class="next">⟩</label>
+            </div>
+            <div class="pair s12">
+              <label for="s11" class="prev">⟨</label
+              ><label for="s13" class="next">⟩</label>
+            </div>
+            <div class="pair s13">
+              <label for="s12" class="prev">⟨</label
+              ><label for="s14" class="next">⟩</label>
+            </div>
+            <div class="pair s14">
+              <label for="s13" class="prev">⟨</label
+              ><label for="s15" class="next">⟩</label>
+            </div>
+            <div class="pair s15">
+              <label for="s14" class="prev">⟨</label
+              ><label for="s16" class="next">⟩</label>
+            </div>
+            <div class="pair s16">
+              <label for="s15" class="prev">⟨</label
+              ><label for="s17" class="next">⟩</label>
+            </div>
+            <div class="pair s17">
+              <label for="s16" class="prev">⟨</label
+              ><label for="s1" class="next">⟩</label>
+            </div>
+            <div class="pair s18">
+              <label for="s17" class="prev">⟨</label
+              ><label for="s1" class="next">⟩</label>
+            </div>
           </div>
 
           <!-- dots -->
@@ -900,6 +1016,18 @@
             <label class="d4" for="s4"></label>
             <label class="d5" for="s5"></label>
             <label class="d6" for="s6"></label>
+            <label class="d7" for="s7"></label>
+            <label class="d8" for="s8"></label>
+            <label class="d9" for="s9"></label>
+            <label class="d10" for="s10"></label>
+            <label class="d11" for="s11"></label>
+            <label class="d12" for="s12"></label>
+            <label class="d13" for="s13"></label>
+            <label class="d14" for="s14"></label>
+            <label class="d15" for="s15"></label>
+            <label class="d16" for="s16"></label>
+            <label class="d17" for="s17"></label>
+            <label class="d18" for="s18"></label>
           </div>
         </div>
       </section>
@@ -946,6 +1074,26 @@
           <div class="card">
             <span class="num">10.</span>Vì chúng ta sinh ra là để ở bên nhau.
           </div>
+          <div class="card">
+            <span class="num">11.</span>Em hay cãi anh nhưng mà đáng iu nên được
+            tha thứ chứ không là bị quánh đít ràu😂.
+          </div>
+          <div class="card">
+            <span class="num">12.</span>Em rất là hiểu chuyện nên anh rất mừng
+            và thích ở điểm đó của em nhưng mà tùy thui nhen bởi vì anh muốn em
+            làm em bé khi ở bên anh thui.
+          </div>
+          <div class="card">
+            <span class="num">13.</span>Khi nghe em kể chuyện thì anh càng
+            thương em bé của anh nhiều hơn, nhất định em sẽ không hối hận khi đã
+            chọn anh đâuuuu😍.
+          </div>
+          <div class="card">
+            <span class="num">14.</span>Hy vọng những note này sẽ dài hơn nữa
+            nhé em bé iu ơi
+          </div>
+
+          <div class="card"><span class="num">15.</span>Anh yêu em😘</div>
         </div>
       </section>
 
@@ -972,11 +1120,21 @@
               Tương lai của anh luôn có em. Cùng đi thêm nhiều nơi nhé!
             </div>
           </div>
+          <div class="flip">
+            <div class="face front">💬 Bí mật 3</div>
+            <div class="face back">
+              Hôm nay là kỉ niệm 2 tháng chính thức iu nhau ròi đó, tuy văn
+              chương của anh hơi yếu nhưng mà mọi thứ anh viết vào đây đều là
+              thật lòng và không nói xạo. Anh cảm thấy rất may mắn khi được có
+              em bên cạnh và luôn đồng hành cùng với anh. Hy vọng em và anh sẽ
+              mãi như vậy nhé. Anh yêu em❤️❤️❤️
+            </div>
+          </div>
         </div>
       </section>
 
       <section class="section center">
-        <h2>Hẹn nhau mỗi năm một lần</h2>
+        <h2>Hẹn nhau mỗi tháng một lần nhé em</h2>
         <p class="lead">
           Đến ngày kỷ niệm, mở trang này lại – thêm ảnh, thêm câu chuyện mới nha
           em💖
@@ -986,9 +1144,7 @@
         >
       </section>
 
-      <div class="footer">
-        Made with ♥ bằng HTML & CSS — không cần JavaScript.
-      </div>
+      <div class="footer">Bé yêu của anh💘</div>
     </main>
   </body>
 </html>
