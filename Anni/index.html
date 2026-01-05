@@ -410,7 +410,7 @@
         opacity: 0;
       }
 
-      /* Hiển thị figure tương ứng radio được chọn */
+      /* HIỂN THỊ FIGURE TƯƠNG ỨNG RADIO ĐƯỢC CHỌN (ĐÃ UPDATE FULL 23 ẢNH) */
       #s1:checked ~ .slides .f1,
       #s2:checked ~ .slides .f2,
       #s3:checked ~ .slides .f3,
@@ -428,7 +428,12 @@
       #s15:checked ~ .slides .f15,
       #s16:checked ~ .slides .f16,
       #s17:checked ~ .slides .f17,
-      #s18:checked ~ .slides .f18 {
+      #s18:checked ~ .slides .f18,
+      #s19:checked ~ .slides .f19,
+      #s20:checked ~ .slides .f20,
+      #s21:checked ~ .slides .f21,
+      #s22:checked ~ .slides .f22,
+      #s23:checked ~ .slides .f23 {
         opacity: 1;
         pointer-events: auto;
         z-index: 1;
@@ -470,6 +475,7 @@
         gap: 8px;
         justify-content: center;
         flex-wrap: wrap;
+        z-index: 3;
       }
       .dots label {
         width: 10px;
@@ -479,6 +485,8 @@
         cursor: pointer;
         border: 1px solid rgba(255, 255, 255, 0.8);
       }
+
+      /* HIỆN MÀU CHO DOTS TƯƠNG ỨNG (ĐÃ UPDATE FULL 23 DOTS) */
       #s1:checked ~ .dots .d1,
       #s2:checked ~ .dots .d2,
       #s3:checked ~ .dots .d3,
@@ -496,7 +504,12 @@
       #s15:checked ~ .dots .d15,
       #s16:checked ~ .dots .d16,
       #s17:checked ~ .dots .d17,
-      #s18:checked ~ .dots .d18 {
+      #s18:checked ~ .dots .d18,
+      #s19:checked ~ .dots .d19,
+      #s20:checked ~ .dots .d20,
+      #s21:checked ~ .dots .d21,
+      #s22:checked ~ .dots .d22,
+      #s23:checked ~ .dots .d23 {
         background: var(--primary);
         border-color: var(--primary);
       }
@@ -505,6 +518,8 @@
       .nav .pair {
         display: none;
       }
+
+      /* HIỆN NÚT NAV TƯƠNG ỨNG (ĐÃ UPDATE FULL 23 CẶP) */
       #s1:checked ~ .nav .pair.s1,
       #s2:checked ~ .nav .pair.s2,
       #s3:checked ~ .nav .pair.s3,
@@ -522,7 +537,12 @@
       #s15:checked ~ .nav .pair.s15,
       #s16:checked ~ .nav .pair.s16,
       #s17:checked ~ .nav .pair.s17,
-      #s18:checked ~ .nav .pair.s18 {
+      #s18:checked ~ .nav .pair.s18,
+      #s19:checked ~ .nav .pair.s19,
+      #s20:checked ~ .nav .pair.s20,
+      #s21:checked ~ .nav .pair.s21,
+      #s22:checked ~ .nav .pair.s22,
+      #s23:checked ~ .nav .pair.s23 {
         display: grid;
       }
 
@@ -722,7 +742,6 @@
       <span class="txt">Dark</span>
     </label>
 
-    <!-- GATE checkbox & overlay -->
     <input type="checkbox" id="gate" />
     <div class="gate-overlay">
       <div class="gate-card">
@@ -740,7 +759,6 @@
     </div>
 
     <main class="page">
-      <!-- HERO -->
       <section class="hero">
         <div class="hearts" aria-hidden="true">
           <span></span><span></span><span></span><span></span><span></span>
@@ -764,7 +782,6 @@
         </div>
       </section>
 
-      <!-- STORYLINE -->
       <section class="section">
         <h2>Câu chuyện của chúng mình</h2>
         <p class="lead">Một vài cột mốc đáng nhớ của anh và em.</p>
@@ -835,7 +852,6 @@
         </div>
       </section>
 
-      <!-- ALBUM CSS-ONLY CAROUSEL -->
       <section class="section">
         <h2>Album kỷ niệm</h2>
         <p class="lead">
@@ -843,7 +859,6 @@
           thêm nhìu nhìu hình nữa nhe em 😊
         </p>
         <div class="carousel">
-          <!-- radio controllers (16 slides) -->
           <input type="radio" name="slide" id="s1" checked />
           <input type="radio" name="slide" id="s2" />
           <input type="radio" name="slide" id="s3" />
@@ -862,8 +877,12 @@
           <input type="radio" name="slide" id="s16" />
           <input type="radio" name="slide" id="s17" />
           <input type="radio" name="slide" id="s18" />
+          <input type="radio" name="slide" id="s19" />
+          <input type="radio" name="slide" id="s20" />
+          <input type="radio" name="slide" id="s21" />
+          <input type="radio" name="slide" id="s22" />
+          <input type="radio" name="slide" id="s23" />
 
-          <!-- slides -->
           <div class="slides">
             <figure class="f1">
               <img src="./hinh1.jpg" alt="Kỷ niệm 1" />
@@ -926,16 +945,33 @@
                 preload="metadata"
                 poster="./poster.jpg"
               >
-                <source src="./video3.mp4" type="video/mp4" />
+                <source src="./video4.mp4" type="video/mp4" />
                 Trình duyệt của bạn không hỗ trợ video.
               </video>
             </figure>
+            <figure class="f19">
+              <img src="./hinh17.jpg" alt="Kỷ niệm 17" />
+            </figure>
+
+            <figure class="f20">
+              <img src="./hinh18.jpg" alt="Kỷ niệm 18" />
+            </figure>
+
+            <figure class="f21">
+              <img src="./hinh19.jpg" alt="Kỷ niệm 19" />
+            </figure>
+            <figure class="f22">
+              <img src="./hinh20.jpg" alt="Kỷ niệm 20" />
+            </figure>
+
+            <figure class="f23">
+              <img src="./hinh21.jpg" alt="Kỷ niệm 21" />
+            </figure>
           </div>
 
-          <!-- navigation pairs (prev/next) -->
           <div class="nav">
             <div class="pair s1">
-              <label for="s16" class="prev">⟨</label
+              <label for="s23" class="prev">⟨</label
               ><label for="s2" class="next">⟩</label>
             </div>
             <div class="pair s2">
@@ -1000,15 +1036,39 @@
             </div>
             <div class="pair s17">
               <label for="s16" class="prev">⟨</label
-              ><label for="s1" class="next">⟩</label>
+              ><label for="s18" class="next">⟩</label>
             </div>
             <div class="pair s18">
               <label for="s17" class="prev">⟨</label
+              ><label for="s19" class="next">⟩</label>
+            </div>
+
+            <div class="pair s19">
+              <label for="s18" class="prev">⟨</label
+              ><label for="s20" class="next">⟩</label>
+            </div>
+
+            <div class="pair s20">
+              <label for="s19" class="prev">⟨</label
+              ><label for="s21" class="next">⟩</label>
+            </div>
+
+            <div class="pair s21">
+              <label for="s20" class="prev">⟨</label
+              ><label for="s22" class="next">⟩</label>
+            </div>
+
+            <div class="pair s22">
+              <label for="s21" class="prev">⟨</label
+              ><label for="s23" class="next">⟩</label>
+            </div>
+
+            <div class="pair s23">
+              <label for="s22" class="prev">⟨</label
               ><label for="s1" class="next">⟩</label>
             </div>
           </div>
 
-          <!-- dots -->
           <div class="dots" aria-hidden="true">
             <label class="d1" for="s1"></label>
             <label class="d2" for="s2"></label>
@@ -1028,11 +1088,15 @@
             <label class="d16" for="s16"></label>
             <label class="d17" for="s17"></label>
             <label class="d18" for="s18"></label>
+            <label class="d19" for="s19"></label>
+            <label class="d20" for="s20"></label>
+            <label class="d21" for="s21"></label>
+            <label class="d22" for="s22"></label>
+            <label class="d23" for="s23"></label>
           </div>
         </div>
       </section>
 
-      <!-- 100 LÝ DO YÊU -->
       <section class="section">
         <h2>100 lý do vì sao anh yêu em</h2>
         <p class="lead">
@@ -1094,10 +1158,14 @@
           </div>
 
           <div class="card"><span class="num">15.</span>Anh yêu em😘</div>
+
+          <div class="card">
+            <span class="num">16.</span>Đôi khi có nhiều chuyện cãi nhau nhưng
+            hãy cùng nhau sửa chứ đừng rời xa nhau em nhé!😘
+          </div>
         </div>
       </section>
 
-      <!-- LỜI NHẮN – FLIP CARDS -->
       <section class="section">
         <h2>Lời nhắn gửi em</h2>
         <div class="notes">
@@ -1128,6 +1196,14 @@
               thật lòng và không nói xạo. Anh cảm thấy rất may mắn khi được có
               em bên cạnh và luôn đồng hành cùng với anh. Hy vọng em và anh sẽ
               mãi như vậy nhé. Anh yêu em❤️❤️❤️
+            </div>
+          </div>
+
+          <div class="flip">
+            <div class="face front">💬 Bí mật 4</div>
+            <div class="face back">
+              Anh biết em dạo này nghĩ hơi nhiều nhưng mà em đừng lo anh vẫn
+              luôn ở đây, yêu em và chăm sóc bé iu của anh^^
             </div>
           </div>
         </div>
